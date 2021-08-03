@@ -2,15 +2,15 @@
 <nav>
     <div class="navbar">
         <a href="#" class="navbar-brand">知乎</a>
-        <ul class="btn-group" v-if="!userinfo.islogin">
-            <li><a href="#" class="btn btn-outline-white">登录</a></li>
-            <li><a href="#" class="btn btn-outline-white">注册</a></li>
+        <ul class="btn-group" v-if="!userinfo.isLogin">
+            <li><router-link class="btn btn-outline-white" :to="{ name: 'login' }" >登录</router-link></li>
+            <li><router-link class="btn btn-outline-white" :to="{ name: 'login' }" >注册</router-link></li>
         </ul>
         <ul class="btn-group" v-else>
           <li><Dropdown :title="'你好'+userinfo.name">
-            <dropdown-item disable>选项1</dropdown-item>
+            <dropdown-item><router-link :to="{ name: 'create' }">创建文章</router-link></dropdown-item>
             <dropdown-item >选项2</dropdown-item>
-            <dropdown-item disable>选项3</dropdown-item>
+            <dropdown-item>选项3</dropdown-item>
             </Dropdown></li>
         </ul>
     </div>
@@ -21,11 +21,7 @@
 import { defineComponent, PropType } from 'vue'
 import Dropdown from './Dropdown.vue'
 import DropdownItem from './DropdownItem.vue'
-export interface UserProps {
-    islogin: boolean;
-    name?: string;
-    id?: number
-}
+import { UserProps } from '../store'
 export default defineComponent({
   name: 'GlobalHeader',
   components: {
@@ -46,7 +42,6 @@ nav{
     width: 100%;
     background-color: #0d6efd;
     padding: 0 1.5rem;
-    margin-bottom: 1.5rem;
     box-sizing: border-box;
 }
 .navbar{

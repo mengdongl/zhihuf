@@ -63,6 +63,7 @@ export default defineComponent({
     transform-origin: top;
     transition: transform .2s ease-in-out .05s;
     overflow-y: auto;
+    z-index: 100;
 }
 .dropdown-menu.show{
   transform: translateX(-50%) scaleY(100%);
